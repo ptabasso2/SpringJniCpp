@@ -61,7 +61,8 @@ compilec:
 
 
 compilejava:
-	$(JAVA_HOME)/bin/javac -h c -cp target:./java/jars/* -d target java/PassHashMap.java
+	javac -h ./src/main/java/com/datadog/pej/springjni -cp /Users/pejman.tabassomi/JNI/springboot/build/classes/java/main:/Users/pejman.tabassomi/JNI/springboot/build/resources/main:jars/* -d /Users/pejman.tabassomi/JNI/springboot/build/classes/java/main/com/datadog/pej/springjni src/main/java/com/datadog/pej/springjni/SpringController.java
+
 
 test:
 	$(JAVA_HOME)/bin/java -Djava.library.path=$(LD_LIBRARY_PATH):./lib -cp target:./java/jars/* PassHashMap
