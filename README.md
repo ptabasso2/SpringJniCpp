@@ -151,11 +151,11 @@ user@ubuntu:~/JNI/springboot$ cd ../cpp
 user@ubuntu:~/JNI/cpp$ make
 ```
 
-This will place the libspringjni.so library in the ./cpp/lib
+This will place the `libspringjni.so` library in the `$HOME/JNI/cpp/lib` directory
 
 ### Running the app
 
-Setting the `LD_LIBRARY_PATH` to the location of the newly created library tells the spring boot app where to locate it.
+Setting the `LD_LIBRARY_PATH` variable to point to the location of the newly created library. It actually tells the spring boot app where to locate it.
 If not specified, it will fail at startup. 
 
 ```sh
