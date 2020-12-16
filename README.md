@@ -7,9 +7,9 @@ A detailed step-by-step showing how tracing can be implemented for a SpringBoot 
 Tracing will be implemented on both layers.
 
 The environment used in this tutorial is based on a linux Ubuntu (20.04).
+<br>
 
 ### Preliminary tasks and first time steps
-<br>
 
 ***Clone this repository***
 
