@@ -6,10 +6,10 @@
 A detailed step-by-step showing how tracing can be implemented for a SpringBoot app loading a C++ library.
 Tracing will be implemented on both layers.
 
-The enveironnement used in this tutorial is Ubuntu 20.04.
+The environment used in this tutorial is based on a linux Ubuntu (20.04).
 
 ### Preliminary tasks and first time steps
-
+<br>
 
 ***Clone this repository***
 
