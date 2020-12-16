@@ -127,7 +127,7 @@ user@ubuntu:~/JNI/springboot$ javac -h ../cpp/c \
 -d $HOME/JNI/springboot/build/classes/java/main/com/datadog/pej/springjni src/main/java/com/datadog/pej/springjni/SpringController.java
 ```
 
-The header file will be placed under the `$HOME/cpp/c directory` and is named: `com_datadog_pej_springjni_SpringController.h`
+The header file will be placed under the `$HOME/cpp/c` directory and is named: `com_datadog_pej_springjni_SpringController.h`
 
 ```sh
 user@ubuntu:~/JNI$ ls -lrt ../cpp/c
