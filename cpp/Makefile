@@ -54,18 +54,10 @@ endif
 JVM_INCLUDE=-I${JAVA_HOME}/include -I${JAVA_HOME}/include/$(ARCH) \
 
 
-all: compilejava compilec
+all: compilec
 
 compilec:
-	g++ -std=c++14 -g -shared -fpic -I${JAVA_HOME}/include -I${JAVA_HOME}/include/$(ARCH)  -I"<Path to dd-ot include files>/dd-opentracing-cpp/deps/include" -I"<Path to dd-ot include files>/dd-opentracing-cpp/include" -I"<Path to opentracing include files>/opentracing-cpp/include" c/springjni.cpp -o lib/libspringjni.so  -L<lib ath to dd-ot lib>/dd-opentracing-cpp/.build -ldd_opentracing -L<Path to opentracing lib>/opentracing-cpp/.build/output -lopentracing
-
-
-compilejava:
-	javac -h ./src/main/java/com/datadog/pej/springjni -cp /Users/pejman.tabassomi/JNI/springboot/build/classes/java/main:/Users/pejman.tabassomi/JNI/springboot/build/resources/main:jars/* -d /Users/pejman.tabassomi/JNI/springboot/build/classes/java/main/com/datadog/pej/springjni src/main/java/com/datadog/pej/springjni/SpringController.java
-
-
-test:
-	$(JAVA_HOME)/bin/java -Djava.library.path=$(LD_LIBRARY_PATH):./lib -cp target:./java/jars/* PassHashMap
+	g++ -std=c++14 -g -shared -fpic -I${JAVA_HOME}/include -I${JAVA_HOME}/include/$(ARCH)  -I${HOME}/dd-opentracing-cpp/deps/include -I${HOME}/dd-opentracing-cpp/include -I${HOME}/opentracing-cpp/include c/springjni.cpp -o lib/libspringjni.so  -L${HOME}/dd-opentracing-cpp/.build -ldd_opentracing -L${HOME}/opentracing-cpp/.build/output -lopentracing
 
 clean: clean-common
 	$(call rm-test,c/passHashMap.h)
