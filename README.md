@@ -91,6 +91,19 @@ user@ubuntu:~/dd-opentracing-cpp/.build$ sudo make install
 ```
 
 
+
+The directory should normally look like this:
+
+```sh
+user@ubuntu:~/$ tree
+opentracing-cpp
+dd-opentracing-cpp
+JNI
+├── cpp
+└── springboot
+```
+
+
 ### Spin up the Datadog Agent (Provide your API key  to the  below command)
 
 
