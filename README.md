@@ -11,13 +11,13 @@ The enveironnement used in this tutorial is Ubuntu 20.04.
 ### Preliminary tasks and first time steps
 
 
-*Clone this repository*
+***Clone this repository***
 
 ```sh
 user@ubuntu:~/JNI$ git clone https://github.com/ptabasso2/SpringJniCpp
 ```
 
-*Initial directory structure*
+***Initial directory structure***
 
 ```sh
 user@ubuntu:~/JNI$ tree
@@ -63,9 +63,9 @@ Note: the `jars` directory is the collection of jar files that are necessary dur
 
 
 
-*Install the C++ opentracing library and the C++ Datadog tracing library*
+***Install the C++ opentracing library and the C++ Datadog tracing library***
 
-***Opentracing***
+*Opentracing*
 
 ```sh
 user@ubuntu:~/$ git clone https://github.com/opentracing/opentracing-cpp.git
@@ -77,7 +77,7 @@ pej@ubuntu:~/opentracing-cpp/.build$ make
 pej@ubuntu:~/opentracing-cpp/.build$ sudo make install
 ```
 
-***DD Tracing api***
+*DD Tracing api*
 
 ```sh
 user@ubuntu:~/$ git clone https://github.com/DataDog/dd-opentracing-cpp
