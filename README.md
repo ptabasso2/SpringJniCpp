@@ -63,7 +63,29 @@ Note: the `jars` directory is the collection of jar files that are necessary dur
 
 
 
-Install the C++ opentracing library and the C++ Datadog tracing library
+_Install the C++ opentracing library and the C++ Datadog tracing library_
+
+**Opentracing**
+
+user@ubuntu:~/$ git clone https://github.com/opentracing/opentracing-cpp.git
+user@ubuntu:~/$ cd opentracing-cpp
+user@ubuntu:~/opentracing-cpp$ mkdir .build
+user@ubuntu:~/opentracing-cpp$ cd .build
+pej@ubuntu:~/opentracing-cpp/.build$ cmake ..
+pej@ubuntu:~/opentracing-cpp/.build$ make
+pej@ubuntu:~/opentracing-cpp/.build$ sudo make install
+
+**DD Tracing api **
+
+user@ubuntu:~/$ git clone https://github.com/DataDog/dd-opentracing-cpp
+user@ubuntu:~/$ cd dd-opentracing-cpp
+user@ubuntu:~/dd-opentracing-cpp$ sudo scripts/install_dependencies.sh
+user@ubuntu:~/dd-opentracing-cpp$ mkdir .build
+user@ubuntu:~/dd-opentracing-cpp$ cd .build
+user@ubuntu:~/dd-opentracing-cpp/.build$ cmake ..
+user@ubuntu:~/dd-opentracing-cpp/.build$ make
+user@ubuntu:~/dd-opentracing-cpp/.build$ sudo make install
+
 
 
 **_Spin up the Datadog Agent (Provide your API key  to the  below command)_** 
@@ -117,7 +139,7 @@ This will place the libspringjni.so library in the ./cpp/lib
 
 **_Running the app_**
 
-Setting the LD_LIBRARY_PATH to the location of the newly created library tells the spring boot app where to locate it.
+Setting the `LD_LIBRARY_PATH` to the location of the newly created library tells the spring boot app where to locate it.
 If not specified, it will fail at startup. 
 
 ```sh
