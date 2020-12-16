@@ -65,7 +65,7 @@ Note: the `jars` directory is the collection of jar files that are necessary dur
 
 *Install the C++ opentracing library and the C++ Datadog tracing library*
 
-**Opentracing**
+***Opentracing***
 
 ```sh
 user@ubuntu:~/$ git clone https://github.com/opentracing/opentracing-cpp.git
@@ -77,7 +77,7 @@ pej@ubuntu:~/opentracing-cpp/.build$ make
 pej@ubuntu:~/opentracing-cpp/.build$ sudo make install
 ```
 
-**DD Tracing api**
+***DD Tracing api***
 
 ```sh
 user@ubuntu:~/$ git clone https://github.com/DataDog/dd-opentracing-cpp
@@ -103,7 +103,7 @@ user@ubuntu:~/JNI$ DOCKER_CONTENT_TRUST=1 docker run -d --rm --name datadog_agen
 ```
 
 
-### Generate header file
+### Generate the c++ header file
 
 Note: the `jars` directory is the collection of jar files that are necessary during this step
 
@@ -125,7 +125,7 @@ total 12
 ```
 
 
-### Build Springboot app
+### Build the Springboot app
 
 ```sh
 user@ubuntu:~/JNI/springboot$ gradle build
