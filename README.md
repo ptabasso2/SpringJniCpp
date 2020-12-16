@@ -6,21 +6,71 @@
 A detailed step-by-step showing how tracing can be implemented for a SpringBoot app loading a C++ library.
 Tracing will be implemented on both layers.
 
+The enveironnement used in this tutorial is Ubuntu 20.04.
 
 **_Preliminary tasks and first time steps_**
+
 
 Clone this repository
 
 ```sh
-MacOSX:springjni - root$ git clone https://github.com/ptabasso2/SpringJniCpp
+user@ubuntu:~/JNI$ git clone https://github.com/ptabasso2/SpringJniCpp
 ```
+
+Initial directory structure
+
+```sh
+user@ubuntu:~/JNI$ tree
+.
+├── cpp
+│   ├── c
+│   │   ├── springjni.cpp
+│   │   └── text_map_carrier.h
+│   ├── lib
+│   │   └── libspringjni.so
+│   └── Makefile
+└── springboot
+    ├── build.gradle
+    ├── gradle
+    │   └── wrapper
+    │       ├── gradle-wrapper.jar
+    │       └── gradle-wrapper.properties
+    ├── gradlew
+    ├── jars
+    │   ├── asm-7.1.jar
+    │   ├── asm-analysis-7.1.jar
+    ...
+    │   ├── spring-web-5.2.7.RELEASE.jar
+    │   ├── spring-webmvc-5.2.7.RELEASE.jar
+    │   ├── tomcat-embed-core-9.0.36.jar
+    │   └── tomcat-embed-websocket-9.0.36.jar
+    ├── settings.gradle
+    └── src
+        └── main
+            ├── java
+            │   └── com
+            │       └── datadog
+            │           └── pej
+            │               └── springjni
+            │                   ├── SpringController.java
+            │                   └── SpringjniApplication.java
+            └── resources
+                └── application.properties
+
+```
+
+Note: the `jars` directory is the collection of jar files that are necessary during the c++ header file generation process (javac) 
+
+
+
+Install the C++ opentracing library and the C++ Datadog tracing library
 
 
 **_Spin up the Datadog Agent (Provide your API key  to the  below command)_** 
 
 
 ```sh
-MacOSX:springjni - root$ DOCKER_CONTENT_TRUST=1 docker run -d --rm --name datadog_agent -h datadog \ 
+user@ubuntu:~/JNI$ DOCKER_CONTENT_TRUST=1 docker run -d --rm --name datadog_agent -h datadog \ 
 -v /var/run/docker.sock:/var/run/docker.sock:ro -v /proc/:/host/proc/:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
 -p 8126:8126 -p 8125:8125/udp -e DD_API_KEY=<Api key to enter> -e DD_APM_ENABLED=true \
 -e DD_APM_NON_LOCAL_TRAFFIC=true -e DD_PROCESS_AGENT_ENABLED=true -e DD_DOGSTATSD_NON_LOCAL_TRAFFIC="true" \ 
@@ -30,41 +80,57 @@ MacOSX:springjni - root$ DOCKER_CONTENT_TRUST=1 docker run -d --rm --name datado
 
 **_Generate header file_**
 
+Note: the `jars` directory is the collection of jar files that are necessary during this step
+
 ```sh
-MacOSX:springjni - root$ javac -h ./src/main/java/com/datadog/pej/springjni \
--cp /Users/pejman.tabassomi/JNI/springboot/build/classes/java/main:/Users/pejman.tabassomi/JNI/springboot/build/resources/main:jars/* \
--d /Users/pejman.tabassomi/JNI/springboot/build/classes/java/main/com/datadog/pej/springjni src/main/java/com/datadog/pej/springjni/SpringController.java
+user@ubuntu:~/JNI$ cd springboot 
+user@ubuntu:~/JNI/springboot$ javac -h ../cpp/c \
+-cp $HOME/JNI/springboot/build/classes/java/main:$HOME/JNI/springboot/build/resources/main:jars/* \
+-d $HOME/JNI/springboot/build/classes/java/main/com/datadog/pej/springjni src/main/java/com/datadog/pej/springjni/SpringController.java
+```
+
+The header file will be placed under the `$HOME/cpp/c directory` and is named: `com_datadog_pej_springjni_SpringController.h`
+
+```sh
+user@ubuntu:~/JNI$ ls -lrt ../cpp/c
+total 12
+-rw-r--r-- 1 pej pej  988 Dec 13 08:27 text_map_carrier.h
+-rw-r--r-- 1 pej pej 2230 Dec 14 05:46 springjni.cpp
+-rw-rw-r-- 1 pej pej  620 Dec 15 23:49 com_datadog_pej_springjni_SpringController.h
 ```
 
 
-**_Build Springboot app and copy it under the cpp folder_**
+**_Build Springboot app_**
 
 ```sh
-MacOSX:springjni - root$ ./springboot/gradlew build
-MacOSX:springjni - root$ cp ./springboot/build/libs/springjni-0.0.1-SNAPSHOT.jar ./cpp
+user@ubuntu:~/JNI/springboot$ gradle build
 ```
 
 **_Build the c++ lib_**
 
 ```sh
-MacOSX:springjni - root$ ./cpp/make
+user@ubuntu:~/JNI/springboot$ cd ../cpp
+user@ubuntu:~/JNI/cpp$ make
 ```
 
 This will place the libspringjni.so library in the ./cpp/lib
 
 **_Running the app_**
+
+Setting the LD_LIBRARY_PATH to the location of the newly created library tells the spring boot app where to locate it.
+If not specified, it will fail at startup. 
+
 ```sh
-MacOSX:springjni - root$ ./springboot/build/libs/springjni-0.0.1-SNAPSHOT.jar -Djava.library.path=$(LD_LIBRARY_PATH):./lib
+user@ubuntu:~/JNI/springboot$ export LD_LIBRARY_PATH=$HOME/JNI/cpp/lib
+user@ubuntu:~/JNI/springboot$ java -jar ./build/libs/springjni-0.0.1-SNAPSHOT.jar
 ```
 
 **_Testing the app_**
+
+Open a new terminal and run the following command
+
 ```sh
-MacOSX:springjni - root$ curl localhost:8080/
+user@ubuntu:~/JNI$ curl localhost:8080/
 C++ ended job done...
 ```
-
-
-
-
-<br>
 
