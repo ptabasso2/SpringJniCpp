@@ -77,7 +77,7 @@ pej@ubuntu:~/opentracing-cpp/.build$ make
 pej@ubuntu:~/opentracing-cpp/.build$ sudo make install
 ```
 
-**DD Tracing api **
+**DD Tracing api**
 
 ```sh
 user@ubuntu:~/$ git clone https://github.com/DataDog/dd-opentracing-cpp
