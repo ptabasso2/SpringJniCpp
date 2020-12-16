@@ -91,7 +91,7 @@ user@ubuntu:~/dd-opentracing-cpp/.build$ sudo make install
 ```
 
 
-**_Spin up the Datadog Agent (Provide your API key  to the  below command)_** 
+### Spin up the Datadog Agent (Provide your API key  to the  below command)
 
 
 ```sh
@@ -103,7 +103,7 @@ user@ubuntu:~/JNI$ DOCKER_CONTENT_TRUST=1 docker run -d --rm --name datadog_agen
 ```
 
 
-**_Generate header file_**
+### Generate header file
 
 Note: the `jars` directory is the collection of jar files that are necessary during this step
 
@@ -125,13 +125,13 @@ total 12
 ```
 
 
-**_Build Springboot app_**
+### Build Springboot app
 
 ```sh
 user@ubuntu:~/JNI/springboot$ gradle build
 ```
 
-**_Build the c++ lib_**
+### Build the c++ lib
 
 ```sh
 user@ubuntu:~/JNI/springboot$ cd ../cpp
@@ -140,7 +140,7 @@ user@ubuntu:~/JNI/cpp$ make
 
 This will place the libspringjni.so library in the ./cpp/lib
 
-**_Running the app_**
+### Running the app
 
 Setting the `LD_LIBRARY_PATH` to the location of the newly created library tells the spring boot app where to locate it.
 If not specified, it will fail at startup. 
@@ -150,7 +150,7 @@ user@ubuntu:~/JNI/springboot$ export LD_LIBRARY_PATH=$HOME/JNI/cpp/lib
 user@ubuntu:~/JNI/springboot$ java -jar ./build/libs/springjni-0.0.1-SNAPSHOT.jar
 ```
 
-**_Testing the app_**
+### Testing the app
 
 Open a new terminal and run the following command
 
