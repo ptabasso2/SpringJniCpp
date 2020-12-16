@@ -8,7 +8,7 @@ Tracing will be implemented on both layers.
 
 The enveironnement used in this tutorial is Ubuntu 20.04.
 
-**_Preliminary tasks and first time steps_**
+### Preliminary tasks and first time steps
 
 
 Clone this repository
