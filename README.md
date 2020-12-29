@@ -108,7 +108,7 @@ user@ubuntu:~/JNI$ DOCKER_CONTENT_TRUST=1 docker run -d --rm --name datadog_agen
 
 ### Generate the c++ header file
 
-First we will need to build a fat jar containing all the class files that coming with the project dependencies.  
+First we will need to build a fat jar containing all the class files that are coming via the project dependencies.  
 
 ```sh
 user@ubuntu:~/JNI$ cd springboot
@@ -141,6 +141,9 @@ total 12
 ```sh
 user@ubuntu:~/JNI/springboot$ gradle build
 ```
+
+This build the final artifact `springjni-0.0.1-SNAPSHOT.jar` placed under `$HOME/JNI/springboot/build/libs`
+
 
 ### Build the c++ lib
 
