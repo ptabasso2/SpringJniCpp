@@ -36,14 +36,6 @@ user@ubuntu:~/JNI$ tree
     │       ├── gradle-wrapper.jar
     │       └── gradle-wrapper.properties
     ├── gradlew
-    ├── jars
-    │   ├── asm-7.1.jar
-    │   ├── asm-analysis-7.1.jar
-    ...
-    │   ├── spring-web-5.2.7.RELEASE.jar
-    │   ├── spring-webmvc-5.2.7.RELEASE.jar
-    │   ├── tomcat-embed-core-9.0.36.jar
-    │   └── tomcat-embed-websocket-9.0.36.jar
     ├── settings.gradle
     └── src
         └── main
@@ -58,8 +50,6 @@ user@ubuntu:~/JNI$ tree
                 └── application.properties
 
 ```
-
-Note: the `jars` directory is the collection of jar files that are necessary during the c++ header file generation process (javac) 
 
 
 
@@ -118,16 +108,24 @@ user@ubuntu:~/JNI$ DOCKER_CONTENT_TRUST=1 docker run -d --rm --name datadog_agen
 
 ### Generate the c++ header file
 
-Note: the `jars` directory is the collection of jar files that are necessary during this step
+First we will need to build a fat jar containing all the class files that coming with the project dependencies.  
 
 ```sh
-user@ubuntu:~/JNI$ cd springboot 
+user@ubuntu:~/JNI$ cd springboot
+user@ubuntu:~/JNI/springboot$ gradle fatJar 
+```
+
+This will create the jar file `springjni-all-0.0.1-SNAPSHOT.jar` placed under  `$HOME/JNI/springboot/build/libs`
+Now let's generate the header file:
+
+```sh
 user@ubuntu:~/JNI/springboot$ javac -h ../cpp/c \
--cp $HOME/JNI/springboot/build/classes/java/main:$HOME/JNI/springboot/build/resources/main:jars/* \
+-cp $HOME/JNI/springboot/build/libs/springjni-all-0.0.1-SNAPSHOT.jar \
 -d $HOME/JNI/springboot/build/classes/java/main/com/datadog/pej/springjni src/main/java/com/datadog/pej/springjni/SpringController.java
 ```
 
 The header file will be placed under the `$HOME/cpp/c` directory and is named: `com_datadog_pej_springjni_SpringController.h`
+
 
 ```sh
 user@ubuntu:~/JNI$ ls -lrt ../cpp/c
