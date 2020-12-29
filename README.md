@@ -72,9 +72,9 @@ user@ubuntu:~/$ git clone https://github.com/opentracing/opentracing-cpp.git
 user@ubuntu:~/$ cd opentracing-cpp
 user@ubuntu:~/opentracing-cpp$ mkdir .build
 user@ubuntu:~/opentracing-cpp$ cd .build
-pej@ubuntu:~/opentracing-cpp/.build$ cmake ..
-pej@ubuntu:~/opentracing-cpp/.build$ make
-pej@ubuntu:~/opentracing-cpp/.build$ sudo make install
+user@ubuntu:~/opentracing-cpp/.build$ cmake ..
+user@ubuntu:~/opentracing-cpp/.build$ make
+user@ubuntu:~/opentracing-cpp/.build$ sudo make install
 ```
 
 *DD Tracing api*
