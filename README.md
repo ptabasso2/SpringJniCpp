@@ -27,7 +27,6 @@ user@ubuntu:~/JNI$ tree
 │   │   ├── springjni.cpp
 │   │   └── text_map_carrier.h
 │   ├── lib
-│   │   └── libspringjni.so
 │   └── Makefile
 └── springboot
     ├── build.gradle
