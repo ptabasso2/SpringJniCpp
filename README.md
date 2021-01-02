@@ -7,8 +7,8 @@ A detailed step-by-step showing how tracing can be implemented for a SpringBoot 
 Tracing will be implemented on both layers.
 
 The environment used in this tutorial is based on a linux Ubuntu (20.04). 
-If you simply need to run the environment you might want to use the Dockerfile (`Dockerfile.springjni`) provided and skip the build steps:
-(Go straight to "Running the app section" and "Testing the app" sections).
+If you simply need to run the environment you might want to use the Dockerfile (`Dockerfile.springjni`) provided and skip the tutorial details.<br>
+(And then jump straight to the two last sections "Running the app" and "Testing the app").
 
 Build and run the container using these commands:
 
