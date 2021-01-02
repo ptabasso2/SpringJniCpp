@@ -17,6 +17,27 @@ The environment used in this tutorial is based on a linux Ubuntu (20.04).
 [root@ubuntu:~]$ git clone https://github.com/ptabasso2/SpringJniCpp
 ```
 
+***Jdk, gradle, various utilities (build tools) and env var set***
+
+```sh
+[root@ubuntu:~]$ apt update && apt -y install net-tools iputils-ping curl vim procps netcat wget gnupg2 apt-transport-https sudo lsof unzip git zip tree build-essential cmake gdb openjdk-13-jdk
+
+[root@ubuntu:~]$ wget https://services.gradle.org/distributions/gradle-6.5.1-bin.zip -P /tmp && unzip -d /opt/gradle /tmp/gradle-6.5.1-bin.zip && ln -s /opt/gradle/gradle-6.5.1 /opt/gradle/latest
+```
+
+Add the following lines to your `.bashrc` file
+
+```sh
+export JAVA_HOME=/usr/lib/jvm/java-13-openjdk-amd64
+export GRADLE_HOME=/opt/gradle/latest
+export PATH=/opt/gradle/latest/bin:${PATH}
+export LD_LIBRARY_PATH=/root/dd-opentracing-cpp/.build:/root/SpringJniCpp/cpp/lib
+```
+
+```sh
+[root@ubuntu:~]$ source ~/.bashrc
+```
+
 ***Initial directory structure***
 
 ```sh
