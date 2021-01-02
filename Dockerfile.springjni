@@ -9,10 +9,6 @@ RUN apt update && apt -y install net-tools iputils-ping curl vim procps netcat w
 && echo 'alias ll="ls -lrt"' >> ~/.bashrc && echo 'PS1=$PS1A' >> ~/.bashrc
 
 
-# See example below:
-# docker run -it --name client4 -h pej -v /var/run/docker.sock:/var/run/docker.sock -v ~/:/app -v ~/GoProjects/docker:/root/go/src  -d client3 bash
-
-
 RUN wget https://services.gradle.org/distributions/gradle-6.5.1-bin.zip -P /tmp && unzip -d /opt/gradle /tmp/gradle-6.5.1-bin.zip && ln -s /opt/gradle/gradle-6.5.1 /opt/gradle/latest 
 
 ENV JAVA_HOME /usr/lib/jvm/java-13-openjdk-amd64 
