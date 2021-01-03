@@ -7,14 +7,16 @@ A detailed step-by-step showing how tracing can be implemented for a SpringBoot 
 Tracing will be implemented on both layers.
 
 The environment used in this tutorial is based on a linux Ubuntu (20.04). 
-If you simply need to run the environment you might want to use the Dockerfile (`Dockerfile.springjni`) provided and skip the tutorial details.<br>
+If you simply need to run the environment you might want to use the `Dockerfile.springjni` and `docker-compose.yml` files provided and skip the tutorial details.<br>
 (And then jump straight to the two last sections "Running the app" and "Testing the app").
 
-Build and run the container using these commands:
+Build and spin up both the DD Agent container and the application container using these commands. You need to provide your API key
 
 ```sh
 [root@ubuntu:~]$ docker build -f Dockerfile -t springjniimg .
-[root@ubuntu:~]$ docker run -it --name springjni -h ubuntu -d springjniimg:latest bash
+[root@ubuntu:~]$ export DD_API_KEY=cdxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+[root@ubuntu:~]$ docker-compose up -d
+[root@ubuntu:~]$ docker exec -it springjni bash
 ```
 
 <br>
