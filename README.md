@@ -6,7 +6,17 @@
 A detailed step-by-step showing how tracing can be implemented for a SpringBoot app loading a C++ library.
 Tracing will be implemented on both layers.
 
-The environment used in this tutorial is based on a linux Ubuntu (20.04).
+The environment used in this tutorial is based on a linux Ubuntu (20.04). 
+If you simply need to run the environment you might want to use the Dockerfile (`Dockerfile.springjni`) provided and skip the tutorial details.<br>
+(And then jump straight to the two last sections "Running the app" and "Testing the app").
+
+Build and run the container using these commands:
+
+```sh
+[root@ubuntu:~]$ docker build -f Dockerfile -t springjniimg .
+[root@ubuntu:~]$ docker run -it --name springjni -h ubuntu -d springjniimg:latest bash
+```
+
 <br>
 
 ### Preliminary tasks and first time steps
