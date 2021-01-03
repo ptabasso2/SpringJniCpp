@@ -14,7 +14,7 @@ Build and spin up both the DD Agent container and the application container usin
 You need to provide your API key
 
 ```sh
-pejman@macosx:~ $ docker build -f Dockerfile -t springjniimg .
+pejman@macosx:~ $ docker build -f Dockerfile.springjni -t springjniimg .
 pejman@macosx:~ $ export DD_API_KEY=cdxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 pejman@macosx:~ $ docker-compose up -d
 Creating springjni ... done
