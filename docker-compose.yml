@@ -3,7 +3,7 @@ services:
   springjni:
     container_name: springjni
     hostname: ubuntu
-    image: gradleimg:latest 
+    image: springjniimg:latest 
     environment:
       - DD_AGENT_HOST=dd-agent
     stdin_open: true
