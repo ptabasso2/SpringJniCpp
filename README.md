@@ -6,11 +6,12 @@
 A detailed step-by-step showing how tracing can be implemented for a SpringBoot app loading a C++ library.
 Tracing will be implemented on both layers.
 
-The environment used in this tutorial is based on a linux Ubuntu (20.04). 
+The environment used in this tutorial is based on a linux Ubuntu (20.04) virtual machine running on Mac OS X. 
 If you simply need to run the environment you might want to use the `Dockerfile.springjni` and `docker-compose.yml` files provided and skip the tutorial details.<br>
-(And then jump straight to the two last sections "Running the app" and "Testing the app").
+(And then jump straight to the last two sections "Running the app" and "Testing the app").
 
-Build and spin up both the DD Agent container and the application container using these commands. You need to provide your API key
+Build and spin up both the DD Agent container and the application container using the following commands. 
+You need to provide your API key
 
 ```sh
 pejman@macosx:~ $ docker build -f Dockerfile -t springjniimg .
@@ -32,7 +33,7 @@ pejman@macosx:~ $ docker exec -it springjni bash
 [root@ubuntu:~]$ git clone https://github.com/ptabasso2/SpringJniCpp
 ```
 
-***Jdk, gradle, various utilities (build tools) and env var set***
+***Jdk, gradle + various utilities (build tools) and setting environment variables***
 
 ```sh
 [root@ubuntu:~]$ apt update && apt -y install net-tools iputils-ping curl vim procps netcat wget gnupg2 apt-transport-https sudo lsof unzip git zip tree build-essential cmake gdb openjdk-13-jdk
