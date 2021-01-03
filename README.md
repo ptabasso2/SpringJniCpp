@@ -13,10 +13,13 @@ If you simply need to run the environment you might want to use the `Dockerfile.
 Build and spin up both the DD Agent container and the application container using these commands. You need to provide your API key
 
 ```sh
-[root@ubuntu:~]$ docker build -f Dockerfile -t springjniimg .
-[root@ubuntu:~]$ export DD_API_KEY=cdxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-[root@ubuntu:~]$ docker-compose up -d
-[root@ubuntu:~]$ docker exec -it springjni bash
+pejman@macosx:~ $ docker build -f Dockerfile -t springjniimg .
+pejman@macosx:~ $ export DD_API_KEY=cdxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+pejman@macosx:~ $ docker-compose up -d
+Creating springjni ... done
+Creating dd-agent  ... done
+pejman@macosx:~ $ docker exec -it springjni bash
+[root@ubuntu:~]$ 
 ```
 
 <br>
