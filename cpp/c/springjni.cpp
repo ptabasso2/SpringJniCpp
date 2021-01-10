@@ -66,8 +66,8 @@ JNIEXPORT int JNICALL Java_com_datadog_pej_springjni_SpringController_displayHas
     //std::cout << duration;
 
     sleep(1);
+    span->Finish();
     tracer->Close();
-    sleep(1);
 
   return 0;
 
