@@ -199,7 +199,6 @@ Setting the `LD_LIBRARY_PATH` variable to point to the location of the newly cre
 If not specified, it will fail at startup. 
 
 ```sh
-[root@ubuntu:~/SpringJniCpp/springboot]$ export LD_LIBRARY_PATH=/root/dd-opentracing-cpp/.build:/root/SpringJniCpp/cpp/lib
 [root@ubuntu:~/SpringJniCpp/springboot]$ java -jar ./build/libs/springjni-0.0.1-SNAPSHOT.jar
 
   .   ____          _            __ _ _
